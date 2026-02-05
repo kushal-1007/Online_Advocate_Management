@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/pricings/pricing-2/assets/css/pricing-2.css" />
+    <style>
+        /* Custom CSS for form */
+        body {
+           background: linear-gradient(to right, #dcdcdc, #33AEFF);
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff; /* White background */
+            border: 1px solid #dee2e6; /* Gray border */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        section.pricing {
+  background: linear-gradient(to right, #dcdcdc, #33AEFF);
+}
+
+.pricing .card {
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.pricing hr {
+  margin: 1.5rem 0;
+}
+
+.pricing .card-title {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+}
+
+.pricing .card-price {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.pricing .card-price .period {
+  font-size: 0.8rem;
+}
+
+.pricing ul li {
+  margin-bottom: 1rem;
+}
+
+.pricing .text-muted {
+  opacity: 0.7;
+}
+
+.pricing .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .pricing .card:hover {
+    margin-top: -.25rem;
+    margin-bottom: .25rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .pricing .card:hover .btn {
+    opacity: 1;
+  }
+}
+    </style>
+</head>
+<body>
+<!-- Pricing 2 - Bootstrap Brain Component -->
+<section class="pricing py-5">
+  <div class="container">
+
+    <div class="row">
+      <!-- Free Tier -->
+        {% for i in data %}
+      <div class="col-lg-4">
+
+
+        <div class="card mb-5 mb-lg-0" style="height: 100.1%;">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">{{i.name}}</h5>
+            <h6 class="card-price text-center">Rs {{i.price}}<span class="period">/month</span></h6>
+            <hr>
+            <ul class="fa-ul" style="height: 320px;">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>{{i.d1}}</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>{{i.d2}}</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>{{i.d3}}</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>{{i.d4}}</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>{{i.d5}}</li>
+            </ul>
+            <div class="d-grid">
+                <form method="post" style="margin-left: 84px;">
+                {% csrf_token %}
+                <input type="hidden" name="plan_id" value="{{ i.id }}">
+                <input type="submit" class="btn btn-primary text-uppercase" value="Proceed to Pay"/>
+            </form>
+<!--                <form method="post" style="margin-left: 84px;">-->
+<!--                    {% csrf_token %}-->
+<!--                    <input type="submit" class="btn btn-primary text-uppercase" value="Proceed to Pay"/>-->
+<!--                </form>-->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+ {% endfor %}
+    </div>
+  </div>
+</section>
+</body>
+</html>

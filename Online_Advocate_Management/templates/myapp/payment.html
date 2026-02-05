@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for form */
+        body {
+            background: linear-gradient(to right, #dcdcdc, #33AEFF);
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff; /* White background */
+            border: 1px solid #dee2e6; /* Gray border */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <h2>Appointment Fees</h2>
+        <form class="text-center border border-light p-5" action="/success" method="POST">
+            {% csrf_token %}
+            <!-- RAZORPAY INTEGRATION HERE -->
+            <script src="https://checkout.razorpay.com/v1/checkout.js"
+                    data-key="rzp_test_PvM4GxK9MYlCUc"
+                    data-amount="{{payment.amount}}"
+                    data-currency="INR"
+                    data-order_id="{{payment.id}}"
+                    data-buttontext="Pay with Razorpay"
+                    data-name="Online Advocate Management"
+                    data-description="Complete Ad Solution"
+                    data-image="https://oibp1.000webhostapp.com/logo.PNG"
+                    data-prefill.name="{{request.user.first_name}}"
+                    data-prefill.email="{{request.user.email}}"
+                    data-theme.color="#F37254"></script>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+

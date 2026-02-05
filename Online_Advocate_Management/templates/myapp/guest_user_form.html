@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Online Advocate Management - Law Firm Website Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Law Firm Website Template" name="keywords">
+        <meta content="Law Firm Website Template" name="description">
+
+        <!-- Favicon -->
+        <link href="{% static 'myapp/img/favicon.ico'%}" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,600;1,700;1,800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'myapp/lib/animate/animate.min.css'%}" rel="stylesheet">
+        <link href="{% static 'myapp/lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'myapp/css/style.css'%}" rel="stylesheet">
+          <style>
+            .top-bar .logo h4 {
+                    margin: 0;
+                    color: #aa9166;
+                    font-size: 19px;
+                    line-height: 55px;
+                    font-weight: 800;
+                }
+        </style>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <!-- Top Bar Start -->
+            <div class="top-bar">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="logo">
+                                <a href="/#">
+                                    <h4>Online Advocate Management</h4>
+                                    <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="top-bar-right">
+                                <div class="text">
+                                    <h2>9:00 - 18:00</h2>
+                                    <p>Opening Hour Mon - Fri</p>
+                                </div>
+                                <div class="text">
+                                    <h2>+123 456 7890</h2>
+                                    <p>Call Us For Free Consultation</p>
+                                </div>
+                                <div class="social">
+                                   <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://www.instagram.com/trivedi9908/"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Nav Bar Start -->
+             <div class="nav-bar">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                        <a href="#" class="navbar-brand">MENU</a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto">
+                                <a href="/#" class="nav-item nav-link">Home</a>
+                                <a href="/about" class="nav-item nav-link">About</a>
+                                <a href="/service" class="nav-item nav-link">Practice</a>
+                                <a href="/team" class="nav-item nav-link">Attorneys</a>
+                                <a href="/portfolio" class="nav-item nav-link">Case Studies</a>
+                                 <a href="/payment" class="nav-item nav-link active">Video Call</a>
+                                 <a href="/blog_1" class="nav-item nav-link">Blogs</a>
+                                <div class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Court</a>
+                                        <div class="dropdown-menu">
+                                            {% for i in data3 %}
+                                                <a href="/court_types/{{i.court_name}}" class="dropdown-item">{{ i.court_name }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                <a href="/contact" class="nav-item nav-link">Contact</a>
+                            </div>
+                            <div class="ml-auto">
+                                <a class="btn" href="/payment">Get Appointment</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Nav Bar End -->
+
+
+            <!-- Page Header Start -->
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Video Call Form</h2>
+                        </div>
+                        <div class="col-12">
+                            <a href="/#">Home</a>
+                            <a href="">Video Call Form</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Header End -->
+
+
+            <!-- Contact Start -->
+            <div class="contact">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Fill the Form</h2>
+                    </div>
+                    <div class="row">
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="contact-info">-->
+<!--                                <div class="contact-item">-->
+<!--                                    <i class="fa fa-map-marker-alt"></i>-->
+<!--                                    <div class="contact-text">-->
+<!--                                        <h2>Location</h2>-->
+<!--                                        <p>123 Street, New York, USA</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="contact-item">-->
+<!--                                    <i class="fa fa-phone-alt"></i>-->
+<!--                                    <div class="contact-text">-->
+<!--                                        <h2>Phone</h2>-->
+<!--                                        <p>+012 345 67890</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="contact-item">-->
+<!--                                    <i class="fa fa-envelope"></i>-->
+<!--                                    <div class="contact-text">-->
+<!--                                        <h2>Email</h2>-->
+<!--                                        <p>advocatefirm@gmail.com</p>-->
+<!--                                    </div>-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="col-md-6" style="margin-left: 264px;">
+                            <div class="contact-form">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Your Name" required="required" name="guest_name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Your Email" required="required" name="guest_email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Your Number" required="required" name="guest_phone"/>
+                                    </div>
+<!--                                    <div class="form-group">-->
+<!--                                        <textarea class="form-control" placeholder="Message" required="required" name="msg"></textarea>-->
+<!--                                    </div>-->
+                                    <div>
+                                        <button class="btn" type="submit" style="margin-left: 152px;">Proceed To Pay</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact End -->
+
+     <!-- Newsletter Start -->
+            <div class="newsletter">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Subscribe Our Newsletter</h2>
+                    </div>
+                    <div class="form">
+                        <form method="post" action="/News">
+                            {%csrf_token%}
+                        <input class="form-control" placeholder="Email here" name="email">
+                        <button class="btn" type="submit">Submit</button>
+                             </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Newsletter End -->
+
+
+            <!-- Footer Start -->
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="footer-about">
+                                <h2>About Us</h2>
+                                <p>
+                                 Welcome to our platform! We are dedicated to revolutionizing your legal experience. Our user-friendly interface facilitates seamless online communication with lawyers, allowing for easy payments, appointment scheduling, and secure interactions. Embrace efficiency, security, and convenience as we redefine the way you engage with legal services.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-8">
+                            <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="footer-link">
+                                <h2>Services Areas</h2>
+                                {% for i in data4 %}
+                                <a href="/lawtype/{{i.name}}">{{i.name}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="footer-link">
+                                <h2>Useful Pages</h2>
+                                <a href="/about">About Us</a>
+                                <a href="/service">Practices</a>
+                                <a href="/team">Attorneys</a>
+                                <a href="/portfolio">Case Studies</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="footer-contact">
+                                <h2>Get In Touch</h2>
+                                <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
+                                <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
+                                <p><i class="fa fa-envelope"></i>advocatefirm@gmail.com</p>
+                                <div class="footer-social">
+                                   <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.youtube.com/watch?v=8J35cu7mUrw"><i class="fab fa-youtube"></i></a>
+                                    <a href="https://www.instagram.com/trivedi9908/"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="container copyright">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>&copy; <a href="https://htmlcodex.com/law-firm-website-template">Online Advocate Management</a>, All Right Reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Designed By <a href="https://htmlcodex.com">Kushal Trivedi</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+
+            <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'myapp/lib/easing/easing.min.js'%}"></script>
+        <script src="{% static 'myapp/lib/owlcarousel/owl.carousel.min.js'%}"></script>
+        <script src="{% static 'myapp/lib/isotope/isotope.pkgd.min.js'%}"></script>
+
+        <!-- Template Javascript -->
+        <script src="{% static 'myapp/js/main.js'%}"></script>
+    </body>
+</html>

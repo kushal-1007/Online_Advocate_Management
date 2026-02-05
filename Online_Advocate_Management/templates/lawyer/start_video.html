@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyer Video Call</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Lawyer Video Call</h1>
+    <div id="localVideoContainer">
+        <video id="localVideo" autoplay muted></video>
+    </div>
+    <div id="remoteVideoContainer">
+        <video id="remoteVideo" autoplay></video>
+    </div>
+    <button id="startCallButton">Start Call</button>
+    <button id="endCallButton">End Call</button>
+
+    <script>
+        // JavaScript code for WebRTC signaling and video streaming
+
+// Variables to store local and remote video elements
+const localVideo = document.getElementById('localVideo');
+const remoteVideo = document.getElementById('remoteVideo');
+
+// Initialize WebRTC peer connection
+let peerConnection;
+
+// Initialize WebSocket connection
+const socket = new WebSocket('ws://localhost:8000/ws');  // Update the WebSocket URL accordingly
+
+// Handle incoming WebSocket messages
+socket.onmessage = event => {
+    const message = JSON.parse(event.data);
+    if (message.type === 'offer') {
+        handleOfferMessage(message);
+    } else if (message.type === 'answer') {
+        handleAnswerMessage(message);
+    } else if (message.type === 'candidate') {
+        handleCandidateMessage(message);
+    }
+};
+
+// Get user media (video stream from camera)
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+    .then(stream => {
+        // Set local video stream
+        localVideo.srcObject = stream;
+        // Create peer connection
+        createPeerConnection();
+        // Add local stream to peer connection
+        stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+    })
+    .catch(error => {
+        console.error('Error accessing camera:', error);
+    });
+
+// Create WebRTC peer connection
+function createPeerConnection() {
+    peerConnection = new RTCPeerConnection();
+
+    // Handle incoming stream
+    peerConnection.ontrack = event => {
+        // Set remote video stream
+        remoteVideo.srcObject = event.streams[0];
+    };
+
+    // Send ICE candidates to the other peer
+    peerConnection.onicecandidate = event => {
+        if (event.candidate) {
+            const message = {
+                type: 'candidate',
+                candidate: event.candidate
+            };
+            socket.send(JSON.stringify(message));
+        }
+    };
+}
+
+// Handle offer message received from the other peer
+function handleOfferMessage(message) {
+    // Set remote description
+    peerConnection.setRemoteDescription(new RTCSessionDescription(message))
+        .then(() => {
+            // Create answer
+            return peerConnection.createAnswer();
+        })
+        .then(answer => {
+            // Set local description
+            return peerConnection.setLocalDescription(answer);
+        })
+        .then(() => {
+            // Send answer to the other peer
+            const message = {
+                type: 'answer',
+                sdp: peerConnection.localDescription
+            };
+            socket.send(JSON.stringify(message));
+        })
+        .catch(error => {
+            console.error('Error handling offer:', error);
+        });
+}
+
+// Handle answer message received from the other peer
+function handleAnswerMessage(message) {
+    // Set remote description
+    peerConnection.setRemoteDescription(new RTCSessionDescription(message.sdp))
+        .catch(error => {
+            console.error('Error handling answer:', error);
+        });
+}
+
+// Handle ICE candidate message received from the other peer
+function handleCandidateMessage(message) {
+    // Add ICE candidate
+    peerConnection.addIceCandidate(new RTCIceCandidate(message.candidate))
+        .catch(error => {
+            console.error('Error handling ICE candidate:', error);
+        });
+}
+
+    </script>
+</body>
+</html>

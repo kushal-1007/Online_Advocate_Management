@@ -1,0 +1,78 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--<title>Open URL in New Tab</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<button onclick="openURL()">Join the meet</button>-->
+
+<!--<script>-->
+<!--function openURL() {-->
+<!--  var lawyerName = "{{ lawyer_name }}";  // Get the client name from Django template-->
+<!--  var url = 'https://meet.jit.si/myadvocate1?client=' + encodeURIComponent(lawyerName);-->
+<!--  window.open(url, '_self');-->
+<!--}-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #dcdcdc, #33AEFF);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 50px 30px; /* Increased vertical padding */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meet Link Given Below</h1>
+       <button onclick="openURL()">Join the meet</button>
+
+       <script>
+        function openURL() {
+          var lawyerName = "{{ lawyer_name }}";  // Get the client name from Django template
+          var url = 'https://meet.jit.si/myadvocate1?client=' + encodeURIComponent(lawyerName);
+          window.open(url, '_self');
+        }
+        </script>
+    </div>
+</body>
+</html>

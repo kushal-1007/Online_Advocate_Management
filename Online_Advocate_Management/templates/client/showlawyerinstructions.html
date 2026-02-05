@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>PolluxUI Admin</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="{% static 'client/vendors/typicons/typicons.css'%}">
+  <link rel="stylesheet" href="{% static 'client/vendors/css/vendor.bundle.base.css'%}">
+  <link rel="stylesheet" href="{% static 'client/css/vertical-layout-light/style.css'%}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'client/images/favicon.png'%}" />
+</head>
+<body>
+
+  <div class="container-scroller">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="navbar-brand-wrapper d-flex justify-content-center">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+          <a class="navbar-brand brand-logo" href="index.html"><span style="color:white;">Hi , {{request.session.cname}}</span></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'client/images/logo-mini.svg'%}" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+      </div>
+     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{{client_image}}" alt="profile"/>
+              <span class="nav-profile-name">{{request.session.cname}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="logout">
+                <i class="typcn typcn-eject text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+    <!-- partial -->
+     <div class="container-fluid page-body-wrapper">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">Documents</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="upload_document_view">Upload Documents</a></li>
+              </ul>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="typcn typcn-compass menu-icon"></i>
+              <span class="menu-title">Instructions</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="showlawyerinstructions">From Lawyer</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+              <span class="menu-title">Feedback</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="feedback">Client Feedback</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="typcn typcn-th-small-outline menu-icon"></i>
+              <span class="menu-title">Plans</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="transfer">Proceed For View</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="client_video_call">
+              <i class="typcn typcn-mortar-board menu-icon"></i>
+              <span class="menu-title">Join the meet</span>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+              <i class="typcn typcn-globe-outline menu-icon"></i>
+              <span class="menu-title">Logout</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="logout"> Logout </a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+     <div class="container">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Time</th>
+                <th>Instruction</th>
+                <th>Lawyer Name</th>
+                <th>Case Type</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ i.cname }}</td>
+                <td>{{ i.cdate }}</td>
+                <td>{{ i.cinst }}</td>
+                <td>{{ i.clawyer }}</td>
+                <td>{{ i.case }}</td>
+                <!-- Add links to edit and delete if needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- base:js -->
+  <script src="{% static 'client/vendors/js/vendor.bundle.base.js'%}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="{% static 'client/vendors/chart.js/Chart.min.js'%}"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'client/js/off-canvas.js'%}"></script>
+  <script src="{% static 'client/js/hoverable-collapse.js'%}"></script>
+  <script src="{% static 'client/js/template.js'%}"></script>
+  <script src="{% static 'client/js/settings.js'%}"></script>
+  <script src="{% static 'client/js/todolist.js'%}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'client/js/dashboard.js'%}"></script>
+  <!-- End custom js for this page-->
+</body>
+</html>
+

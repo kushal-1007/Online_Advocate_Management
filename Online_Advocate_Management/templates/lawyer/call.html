@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyer Video Call</title>
+    <!-- Add CSS styles for video container -->
+    <style>
+        #localVideo, #remoteVideo {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            transform: scaleX(-1); /* Flip video horizontally */
+        }
+    </style>
+</head>
+<body>
+    <h1>Lawyer Video Call</h1>
+    <video id="localVideo" autoplay></video>
+    <video id="remoteVideo" autoplay></video>
+
+    <!-- Add JavaScript code for WebRTC communication -->
+    <script>
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+        let peerConnection;
+
+        // Get user media (video stream from camera)
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(stream => {
+                localVideo.srcObject = stream;
+                peerConnection.addStream(stream);
+            })
+            .catch(error => {
+                console.error('Error accessing camera:', error);
+            });
+
+        // Function to initiate the call
+        function initiateCall(clientId, lawyerId) {
+            // Retrieve client and lawyer information from the server using their IDs
+
+            // Perform signaling exchange to negotiate WebRTC connection
+            // Include client and lawyer information in the signaling messages
+        }
+
+        // Example usage:
+        // Initiate call from client side
+        initiateCall({{ client_id }}, {{ lawyer.id }});
+    </script>
+</body>
+</html>

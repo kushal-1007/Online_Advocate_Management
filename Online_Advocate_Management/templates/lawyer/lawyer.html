@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyer App</title>
+</head>
+<body>
+    <h1>Lawyer App</h1>
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+    <button id="startButton">Start Video Call</button>
+
+    <script>
+        const websocket = new WebSocket("ws:/http://127.0.0.1:8000//ws/lawyerapp/");
+
+        websocket.onopen = function(event) {
+            console.log("WebSocket connection established.");
+        };
+
+        websocket.onmessage = function(event) {
+            console.log("Message received:", event.data);
+            // Handle incoming messages
+        };
+
+        websocket.onerror = function(event) {
+            console.error("WebSocket error:", event);
+        };
+
+        websocket.onclose = function(event) {
+            console.log("WebSocket connection closed:", event);
+        };
+
+        // Your WebRTC and signaling logic here
+    </script>
+</body>
+</html>
